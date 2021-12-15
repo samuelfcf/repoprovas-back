@@ -6,9 +6,10 @@
   "scripts": {
     "test": "NODE_ENV=test yarn jest -i",
     "test:watch": "NODE_ENV=test yarn jest -i --watch",
-    "build": "NODE_ENV=production npx tsc --outDir dist",
-    "start": "NODE_ENV=production NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/server.js",
-    "start:dev": "NODE_ENV=dev ts-node-dev --files src/server.ts"
+    "build": "NODE_ENV=prod npx tsc --outDir dist",
+    "start": "NODE_ENV=prod NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/server.js",
+    "start:dev": "NODE_ENV=dev ts-node-dev --files src/server.ts",
+    "deploy": "git push heroku main"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.16.5",
