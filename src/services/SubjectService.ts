@@ -5,7 +5,7 @@ import SubjectRepository from '../repositories/SubjectRepository';
 class SubjectService {
   public find = async () => {
     const subjectRepository = getCustomRepository(SubjectRepository);
-    const subjects = await subjectRepository.find();
+    const subjects = await subjectRepository.find({});
 
     if (subjects.length === 0)
       throw new AppError('No subjects in database', 404);

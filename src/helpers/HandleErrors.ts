@@ -5,7 +5,7 @@ import {
 } from '../types/Response';
 import { HttpStatusCode } from '../utils/enums';
 
-class Helper {
+class HelperResponse {
   public static success = (res: Response, data: DefaultSuccessResponse) => {
     return res.status(data.status || HttpStatusCode.SUCCESS).send({
       ...data
@@ -24,4 +24,4 @@ class Helper {
   };
 }
 
-export default Helper;
+export default HelperResponse;

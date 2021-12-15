@@ -1,5 +1,6 @@
 import { Response, Router } from 'express';
 import subjectRouter from './routes/subject.routes';
+import professorRouter from './routes/professor.routes';
 
 const router = Router();
 
@@ -10,5 +11,6 @@ router.get('/', async (_, res: Response) => {
 });
 
 router.use('/subjects', subjectRouter);
+router.use('/professors', professorRouter);
 
 export default router;

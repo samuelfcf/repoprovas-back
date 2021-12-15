@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import Professor from './Professor';
 
 @Entity('subjects')
 class Subject {
@@ -13,6 +14,9 @@ class Subject {
 
   @Column()
   quantity: number;
+
+  @OneToMany(() => Professor, (professor) => professor.subject)
+  professor: Professor[];
 }
 
 export default Subject;

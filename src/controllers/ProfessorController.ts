@@ -1,23 +1,25 @@
 import HelperResponse from '../helpers/HandleErrors';
-import SubjectService from '../services/SubjectService';
+import ProfessorService from '../services/ProfessorService';
 import { RequestHandlerAPI } from '../types/Request';
 import { HttpStatusCode } from '../utils/enums';
 
-class SubjectController {
+class ProfessorController {
   public find: RequestHandlerAPI = async (req, res, next) => {
     try {
-      const subjectService = new SubjectService();
-      const subjects = await subjectService.find();
+      const professorService = new ProfessorService();
+
+      const professors = await professorService.find();
 
       return HelperResponse.success(res, {
         status: HttpStatusCode.SUCCESS,
         message: 'success',
-        data: subjects
+        data: professors
       });
     } catch (err) {
-      return HelperResponse.failed(res, err);
+      console.log(err);
+      HelperResponse.failed(res, err);
     }
   };
 }
 
-export default new SubjectController();
+export default new ProfessorController();

@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Subject from './Subject';
 
 @Entity('professors')
@@ -9,7 +9,7 @@ class Professor {
   @Column()
   name: string;
 
-  @OneToOne(() => Subject, (subject) => subject.id)
+  @ManyToOne(() => Subject, (subject) => subject.professor)
   subject: Subject;
 }
 
