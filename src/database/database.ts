@@ -12,8 +12,11 @@ const connect = async () => {
   const connection = connectionManager.create({
     name: 'default',
     type: 'postgres',
-    url: 'postgres://postgres:123456@localhost:5432/repoprovas',
-    entities: ['src/entities/*.ts']
+    url: process.env.DATABASE_URL,
+    entities: [
+      `${process.env.NODE_ENV === 'prod' ? 'dist' : 'src'}/entities/*.ts`
+    ],
+    ssl: process.env.NODE_ENV === 'prod'
   });
   await connection.connect();
   return connection;
