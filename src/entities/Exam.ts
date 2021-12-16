@@ -2,14 +2,15 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
+import { IExamEntity } from '../types/Exam';
 import Professor from './Professor';
+import Subject from './Subject';
 
 @Entity('exams')
-class Exam {
+class Exam implements IExamEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,9 +20,16 @@ class Exam {
   @Column()
   category: string;
 
-  @ManyToMany(() => Professor, (professors) => professors.exams)
+  @Column()
+  url: string;
+
+  @ManyToOne(() => Professor, (professor) => professor.id, { cascade: true })
   @JoinColumn({ name: 'professor_id' })
-  professors: Professor[];
+  professor: Professor;
+
+  @ManyToOne(() => Subject, (subject) => subject.id, { cascade: true })
+  @JoinColumn({ name: 'subject_id' })
+  subject: Subject;
 }
 
 export default Exam;

@@ -21,7 +21,7 @@ class Professor {
   @JoinColumn({ name: 'subject_id' })
   subject: Subject;
 
-  @ManyToMany(() => Exam, (exam) => exam.professor)
+  @ManyToMany(() => Exam, (exam) => exam.id)
   exams: Exam[];
 }
 
