@@ -2,9 +2,11 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
+import Exam from './Exam';
 import Subject from './Subject';
 
 @Entity('professors')
@@ -15,9 +17,12 @@ class Professor {
   @Column()
   name: string;
 
-  @ManyToOne(() => Subject, (subject) => subject.professor)
+  @ManyToOne(() => Subject)
   @JoinColumn({ name: 'subject_id' })
   subject: Subject;
+
+  @ManyToMany(() => Exam, (exam) => exam.professor)
+  exams: Exam[];
 }
 
 export default Professor;
