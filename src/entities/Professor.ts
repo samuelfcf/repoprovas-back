@@ -6,11 +6,12 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn
 } from 'typeorm';
+import { IProfessorEntity } from '../types/Professor';
 import Exam from './Exam';
 import Subject from './Subject';
 
 @Entity('professors')
-class Professor {
+class Professor implements IProfessorEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

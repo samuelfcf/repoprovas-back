@@ -16,28 +16,15 @@ const createExamValidator = joi.object({
 class ExamController {
   public create: RequestHandlerAPI = async (req, res, next) => {
     try {
-      const { name, category, url, professorId, subjectId }: IExam = req.body;
-      const { error } = createExamValidator.validate({
-        name,
-        category,
-        url,
-        professorId,
-        subjectId
-      });
+      const entity: IExam = { ...req.body };
+      const { error } = createExamValidator.validate(entity);
       if (error) return next(error.details);
 
       const examService = new ExamService();
-      const exam = await examService.create({
-        name,
-        category,
-        url,
-        professorId,
-        subjectId
-      });
+      const exam = await examService.create(entity);
 
       return HelperResponse.success(res, {
         status: HttpStatusCode.CREATED,
-        message: 'Exam created successfully',
         data: exam
       });
     } catch (err) {

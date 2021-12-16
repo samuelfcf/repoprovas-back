@@ -4,7 +4,9 @@ interface DefaultErrorResponse {
   status: number;
 }
 
-interface DefaultSuccessResponse extends Omit<DefaultErrorResponse, 'status'> {
+interface DefaultSuccessResponse
+  extends Omit<DefaultErrorResponse, 'status' | 'message'> {
+  message?: string;
   status?: number;
 }
 

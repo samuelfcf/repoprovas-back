@@ -1,9 +1,10 @@
 import { getCustomRepository } from 'typeorm';
 import AppError from '../errors/AppError';
 import SubjectRepository from '../repositories/SubjectRepository';
+import { ISubjectEntity } from '../types/Subject';
 
 class SubjectService {
-  public find = async () => {
+  public find = async (): Promise<ISubjectEntity[]> => {
     const subjectRepository = getCustomRepository(SubjectRepository);
     const subjects = await subjectRepository.find({});
 

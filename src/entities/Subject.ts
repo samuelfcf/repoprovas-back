@@ -1,9 +1,10 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ISubjectEntity } from '../types/Subject';
 import Exam from './Exam';
 import Professor from './Professor';
 
 @Entity('subjects')
-class Subject {
+class Subject implements ISubjectEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
