@@ -1,27 +1,25 @@
-import { Response } from 'express';
-import {
-  DefaultErrorResponse,
-  DefaultSuccessResponse
-} from '../types/Response';
 import { HttpStatusCode } from '../utils/enums';
+import AppError from '../errors/AppError';
+import { ErrorRequestHandlerAPI } from '../types/Request';
 
-class Helper {
-  public static success = (res: Response, data: DefaultSuccessResponse) => {
-    return res.status(data.status || HttpStatusCode.SUCCESS).send({
-      ...data
-    });
+const HandleErrors: ErrorRequestHandlerAPI = (err, _, res, __) => {
+  const defaultData = {
+    status: HttpStatusCode.BAD_REQUEST,
+    message: ''
   };
 
-  public static failed = (res: Response, catchError: DefaultErrorResponse) => {
-    const status =
-      catchError.status < 1000
-        ? catchError.status
-        : HttpStatusCode.INTERNAL_SERVER_ERROR;
+  if (Array.isArray(err)) {
+    defaultData.message = err[0].message;
+  }
 
-    return res.status(status).send({
-      message: catchError.message
-    });
-  };
-}
+  if (err instanceof AppError) {
+    defaultData.status = err.status;
+    defaultData.message = err.message;
+  }
 
-export default Helper;
+  res.status(defaultData.status).send({
+    message: defaultData.message
+  });
+};
+
+export default HandleErrors;

@@ -16,7 +16,8 @@ const connect = async () => {
     entities: [
       `${process.env.NODE_ENV === 'prod' ? 'dist' : 'src'}/entities/*.ts`
     ],
-    ssl: process.env.NODE_ENV === 'prod'
+    ssl: process.env.NODE_ENV === 'prod',
+    logging: true
   });
   await connection.connect();
   return connection;
