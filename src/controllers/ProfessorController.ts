@@ -16,7 +16,6 @@ class ProfessorController {
         data: professors
       });
     } catch (err) {
-      console.log(err);
       HelperResponse.failed(res, err);
     }
   };

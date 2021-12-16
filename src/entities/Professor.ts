@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import Subject from './Subject';
 
 @Entity('professors')
@@ -10,6 +16,7 @@ class Professor {
   name: string;
 
   @ManyToOne(() => Subject, (subject) => subject.professor)
+  @JoinColumn({ name: 'subject_id' })
   subject: Subject;
 }
 
