@@ -14,7 +14,9 @@ const connect = async () => {
     type: 'postgres',
     url: process.env.DATABASE_URL,
     entities: [
-      `${process.env.NODE_ENV === 'prod' ? 'dist' : 'src'}/entities/*.ts`
+      `${process.env.NODE_ENV === 'prod' ? 'dist' : 'src'}/entities/*.${
+        process.env.NODE_ENV === 'prod' ? 'js' : 'ts'
+      }`
     ],
     ssl: process.env.NODE_ENV === 'prod',
     logging: true
