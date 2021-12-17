@@ -2,8 +2,10 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm';
 import { IProfessorEntity } from '../types/Professor';
@@ -22,8 +24,14 @@ class Professor implements IProfessorEntity {
   @JoinColumn({ name: 'subject_id' })
   subject: Subject;
 
-  @ManyToMany(() => Exam, (exam) => exam.id)
+  @OneToMany(() => Exam, (exam) => exam.professor)
   exams: Exam[];
+
+  getExams() {
+    return {
+      exams: this.exams
+    };
+  }
 }
 
 export default Professor;

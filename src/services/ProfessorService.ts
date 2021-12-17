@@ -8,12 +8,13 @@ class ProfessorService {
     const professorRepository = getCustomRepository(ProfessorRepository);
 
     const professors = await professorRepository.find({
-      relations: ['subject']
+      relations: ['subject', 'exams']
     });
 
     if (professors.length === 0)
       throw new AppError('No professors in database', HttpStatusCode.NOT_FOUND);
 
+    console.log(professors[0].getExams());
     return professors;
   };
 }
