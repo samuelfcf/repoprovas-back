@@ -14,7 +14,6 @@ class ProfessorService {
     if (professors.length === 0)
       throw new AppError('No professors in database', HttpStatusCode.NOT_FOUND);
 
-    console.log(professors[0].getExams());
     return professors;
   };
 }

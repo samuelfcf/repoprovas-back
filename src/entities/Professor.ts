@@ -26,12 +26,6 @@ class Professor implements IProfessorEntity {
 
   @OneToMany(() => Exam, (exam) => exam.professor)
   exams: Exam[];
-
-  getExams() {
-    return {
-      exams: this.exams
-    };
-  }
 }
 
 export default Professor;

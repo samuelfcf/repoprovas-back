@@ -7,7 +7,7 @@ import { HttpStatusCode } from '../utils/enums';
 
 const createExamValidator = joi.object({
   name: joi.string().min(3).required(),
-  category: joi.string().max(2).required(),
+  category: joi.string().max(10).required(),
   url: joi.string().required(),
   professorId: joi.number().integer().required(),
   subjectId: joi.number().integer().required()
