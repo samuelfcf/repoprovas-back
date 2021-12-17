@@ -1,4 +1,5 @@
 import faker from 'faker';
+import { getManager } from 'typeorm';
 import SubjectRepository from '../../src/repositories/SubjectRepository';
 
 const subjectRepository = new SubjectRepository();
@@ -6,12 +7,18 @@ const subjectRepository = new SubjectRepository();
 const fakeSubject = {
   name: faker.datatype.string(),
   period: faker.datatype.string(),
-  quantity: 0
+  exams_quantity: 0
 };
 
 const createFakeSubject = async () => {
-  const subject = subjectRepository.create(fakeSubject);
-  await subjectRepository.save(subject);
+  const subject = await getManager().query(
+    `INSERT INTO subjects (name, period, exams_quantity)VALUES ($1, $2, $3);`,
+    [fakeSubject.name, fakeSubject.period, fakeSubject.exams_quantity]
+  );
 };
 
-export { createFakeSubject };
+const deleteSubjects = async () => {
+  await getManager().query('DELETE FROM subjects');
+};
+
+export { createFakeSubject, deleteSubjects };

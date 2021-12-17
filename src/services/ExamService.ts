@@ -22,12 +22,12 @@ class ExamService {
 
     const { name, category, url, professorId, subjectId } = data;
     const professorExists = await professorRepository.findOne({
-      where: { id: data.professorId }
+      where: { id: professorId }
     });
     if (!professorExists) throw new AppError(`Professor not registered.`, 404);
 
     const subjectExists = await subjectRepository.findOne({
-      where: { id: data.subjectId }
+      where: { id: subjectId }
     });
     if (!subjectExists) throw new AppError(`Subject doesn't exists.`, 404);
 
