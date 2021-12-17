@@ -8,7 +8,7 @@ class ProfessorService {
     const professorRepository = getCustomRepository(ProfessorRepository);
 
     const professors = await professorRepository.find({
-      relations: ['subject']
+      relations: ['subject', 'exams']
     });
 
     if (professors.length === 0)
