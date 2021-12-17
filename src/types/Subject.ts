@@ -5,7 +5,7 @@ interface ISubjectEntity {
   id: number;
   name: string;
   period: string;
-  quantity: number;
+  examsQuantity: number;
   professor: Professor[];
   exam: Exam[];
 }

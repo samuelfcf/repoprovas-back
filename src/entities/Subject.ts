@@ -14,8 +14,8 @@ class Subject implements ISubjectEntity {
   @Column()
   period: string;
 
-  @Column()
-  quantity: number;
+  @Column({ name: 'exams_quantity' })
+  examsQuantity: number;
 
   @OneToMany(() => Professor, (professor) => professor.id)
   professor: Professor[];

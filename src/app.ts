@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import './setup';
 import express from 'express';
 import cors from 'cors';
 import router from './router';
