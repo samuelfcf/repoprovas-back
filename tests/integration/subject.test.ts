@@ -1,6 +1,7 @@
 import supertest from 'supertest';
 import { getConnection } from 'typeorm';
 import app, { init } from '../../src/app';
+import { HttpStatusCode } from '../../src/utils/enums';
 import {
   createFakeSubject,
   deleteSubjects
@@ -30,12 +31,12 @@ describe('GET /subjects', () => {
 
   test('Should returns 404 for no subjects.', async () => {
     const result = await supertest(app).get('/subjects');
-    expect(result.status).toBe(404);
+    expect(result.status).toBe(HttpStatusCode.NOT_FOUND);
   });
 
   test('Shoul returns 200 for subjects', async () => {
     const result = await supertest(app).get('/subjects');
-    expect(result.status).toBe(200);
+    expect(result.status).toBe(HttpStatusCode.SUCCESS);
     expect(result.body.data.length).toBeGreaterThan(0);
   });
 });

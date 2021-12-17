@@ -12,11 +12,12 @@ const createFakeSubject = async () => {
     `INSERT INTO subjects (name, period, exams_quantity) VALUES ($1, $2, $3) RETURNING *;`,
     [fakeSubject.name, fakeSubject.period, fakeSubject.exams_quantity]
   );
+
   return subject;
 };
 
 const deleteSubjects = async () => {
-  await getManager().query('DELETE FROM subjects');
+  await getManager().query('DELETE FROM subjects;');
 };
 
 export { createFakeSubject, deleteSubjects };

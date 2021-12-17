@@ -9,10 +9,12 @@ const fakeProfessor = {
 const createFakeProfessor = async () => {
   const fakeSubjectDB = await createFakeSubject();
 
-  await getManager().query(
-    'INSERT INTO professors (name, subject_id) VALUES ($1, $2);',
+  const professor = await getManager().query(
+    'INSERT INTO professors (name, subject_id) VALUES ($1, $2) RETURNING *;',
     [fakeProfessor.name, fakeSubjectDB[0].id]
   );
+
+  return professor;
 };
 
 const deleteProfessors = async () => {
