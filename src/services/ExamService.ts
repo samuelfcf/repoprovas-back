@@ -39,6 +39,7 @@ class ExamService {
       subject: subjectExists
     });
 
+    exam.subject.examsQuantity += 1;
     await examRepository.save(exam);
 
     return exam;
