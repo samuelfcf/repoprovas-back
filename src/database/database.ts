@@ -18,8 +18,7 @@ const connect = async () => {
         process.env.NODE_ENV === 'prod' ? 'js' : 'ts'
       }`
     ],
-    ssl: process.env.NODE_ENV === 'prod',
-    logging: true
+    ssl: process.env.NODE_ENV === 'prod'
   });
   await connection.connect();
   return connection;

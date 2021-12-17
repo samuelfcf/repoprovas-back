@@ -16,6 +16,14 @@ afterAll(async () => {
 });
 
 describe('GET /subjects', () => {
+  afterAll(async () => {
+    await deleteSubjects();
+  });
+
+  beforeAll(async () => {
+    await deleteSubjects();
+  });
+
   afterEach(async () => {
     await createFakeSubject();
   });
