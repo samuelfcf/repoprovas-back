@@ -7,7 +7,7 @@ interface ISubjectEntity {
   period: string;
   examsQuantity: number;
   professor: Professor[];
-  exam: Exam[];
+  exams: Exam[];
 }
 
 export { ISubjectEntity };
