@@ -7,7 +7,9 @@ import { HttpStatusCode } from '../utils/enums';
 class SubjectService {
   public find = async (): Promise<ISubjectEntity[]> => {
     const subjectRepository = getCustomRepository(SubjectRepository);
-    const subjects = await subjectRepository.find({});
+    const subjects = await subjectRepository.find({
+      relations: ['exams']
+    });
 
     if (subjects.length === 0)
       throw new AppError('No subjects in database', HttpStatusCode.NOT_FOUND);

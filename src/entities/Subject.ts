@@ -20,8 +20,8 @@ class Subject implements ISubjectEntity {
   @OneToMany(() => Professor, (professor) => professor.id)
   professor: Professor[];
 
-  @OneToMany(() => Exam, (exam) => exam.id)
-  exam: Exam[];
+  @OneToMany(() => Exam, (exam) => exam.subject)
+  exams: Exam[];
 }
 
 export default Subject;

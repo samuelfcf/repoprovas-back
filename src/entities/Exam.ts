@@ -23,7 +23,7 @@ class Exam implements IExamEntity {
   @Column()
   url: string;
 
-  @ManyToOne(() => Professor, (professor) => professor.id, { cascade: true })
+  @ManyToOne(() => Professor, (professor) => professor.id, { eager: true })
   @JoinColumn({ name: 'professor_id' })
   professor: Professor;
 
